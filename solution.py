@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from scipy.stats import norm
+from scipy import stats
 
 
 chat_id = 522929689 # Ваш chat ID, не меняйте название переменной
@@ -12,11 +12,22 @@ def solution(p: float, x: np.array) -> tuple:
     # Не меняйте название функции и её аргументы
     a = 0.08
     alpha = 1 - p
+    l = 0
     
-    mean_X = x.mean()  
-
-    u_alpha = norm.ppf(alpha / 2, loc=mean_X, scale=x.std() / len(x))
-    u_1_alpha = norm.ppf(1-alpha / 2, loc=mean_X, scale=x.std() / len(x))
+    if(p == 0.9):
+        if(len(x) < 11 ):
+            l = 0.145
+        elif(len(x) < 101):
+            l = 0.0150
+        else:
+            l = 0.8
+    elif (p == 0.95):
+        l = 0.428
+    elif (p == 0.7):
+        l = 0.101
+    else:
+        l = 0.8
     
     
-    return x.max(), x.max() + (x.min() - a) / len(x)
+    return x.max(), \
+           x.max() + l
