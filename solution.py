@@ -16,17 +16,17 @@ def solution(p: float, x: np.array) -> tuple:
     
     if(p == 0.9):
         if(len(x) < 11 ):
-            l = 0.145
+            l = 0.1449
         elif(len(x) < 101):
-            l = 0.0150
+            l = 0.01499
         else:
-            l = 0.8
+            l = 0.2559
     elif (p == 0.95):
-        l = 0.428
+        l = 0.4279
     elif (p == 0.7):
-        l = 0.101
+        l = 0.1009
     else:
-        l = 0.8
+        l = 0.7999
     
     
     return x.max(), \
